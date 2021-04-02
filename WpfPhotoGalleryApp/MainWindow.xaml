@@ -1,0 +1,70 @@
+﻿<Window x:Class="WpfPhotoGalleryApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPhotoGalleryApp"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Photo Gallery" Background="Tan" MinHeight="400" MinWidth="750" Height="450" Width="800" Icon="/Photos/gallery.png">
+    <materialDesign:Card Margin="5">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="100"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+
+                <ListBox  Margin="5" Background="LightSteelBlue" BorderThickness="1" BorderBrush="DarkGray" MouseDoubleClick="ListFolders_MouseDoubleClick" x:Name="ListFolders" Grid.Row="0" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="30" Height="35" Source="Photos\folder.png" Stretch="Fill"/>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,5,5,5" Text="{Binding Name}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <materialDesign:Card BorderThickness="1" BorderBrush="DarkGray"  Grid.Row="1" Margin="5" >
+                    <UniformGrid   Margin="3" Columns="2">
+                        <Button Content="Add" Click="AddButton_Click" Name="AddButton" Margin="4,2,2,2" BorderBrush="DarkGoldenrod" BorderThickness="3"/>
+                        <Button Content="Remove" Click="RemoveButton_Click" x:Name="RemoveButton" Margin="2,2,4,2" BorderBrush="DarkGoldenrod" BorderThickness="3"/>
+                    </UniformGrid>
+                </materialDesign:Card>
+            </Grid>
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center"/>
+
+            <ListBox Margin="5" Background="LightSteelBlue" MouseDoubleClick="ListPhotos_MouseDoubleClick"  x:Name="ListPhotos" Grid.Column="2">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel Height="100">
+                            <materialDesign:Card BorderThickness="1" BorderBrush="Gold" Padding="3">
+                                <Image Stretch="Fill"  Source="{Binding Path}" DockPanel.Dock="Left" Height="120" Width="150" ></Image>
+                            </materialDesign:Card>
+                            <StackPanel Orientation="Vertical">
+                                 <Label Content="{Binding Name}" FontSize="25" HorizontalAlignment="Left"/>
+                                <Label  Content="{Binding Date}" FontSize="12" HorizontalAlignment="Left"/>
+                                <Label  Content="{Binding Size}" FontSize="13" HorizontalAlignment="Left"/>
+                                <Label  Content="{Binding Path}" FontSize="9" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </materialDesign:Card>
+</Window>

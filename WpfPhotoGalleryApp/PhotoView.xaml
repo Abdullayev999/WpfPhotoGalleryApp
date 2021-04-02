@@ -1,0 +1,45 @@
+﻿<Window x:Class="WpfPhotoGalleryApp.PhotoView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPhotoGalleryApp"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Photo View" Height="450" Width="600" Background="LightSteelBlue" Icon="/Photos/gallery.png" >
+    <materialDesign:Card  Margin="20">
+        <materialDesign:Card  Margin="4">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Image Stretch="Fill" Margin="4" x:Name="PhotoImage"/>
+
+                <UniformGrid Background="Gold" Margin="4" Grid.Row="1" Columns="5">
+                    <Button BorderThickness="2" HorizontalAlignment="Left"  Background="White" Width="80" Click="Paint_Click">
+                        <Image Source="Photos\paint.jpeg" Stretch="Fill"/>
+                    </Button>
+
+                    <Button BorderThickness="2" Background="LightSteelBlue"  Click="Back_Click"  FontSize="20" Content="◀" Margin="4"/>
+                    <Button BorderThickness="2" Click="InfoPhoto_Click"  x:Name="InfoPhoto" Width="50" Background="White"   FontSize="20"  Margin="4">
+                        <Image Source="Photos/help.png"/>
+                    </Button>
+                    <Button BorderThickness="2" Background="LightSteelBlue"  Click="Next_Click" FontSize="20" Content="▶" Margin="4"/>
+
+                    <Button BorderThickness="2" HorizontalAlignment="Right" FontSize="20"  Background="White" Width="80"  Click="Print_Click" Cursor="Hand">
+                        <Image Source="Photos\printer.png"/>
+                    </Button>
+                </UniformGrid>
+            </Grid>
+        </materialDesign:Card>
+    </materialDesign:Card>
+
+</Window>
